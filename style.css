@@ -166,7 +166,7 @@ section, main, header, footer { max-width: 100%; }
 .profile-photo{
   position: relative;
   width: 100%;
-  padding-top: 125%; /* 4:5 box, works even where aspect-ratio is unsupported */
+  padding-top: 100%; /* 1:1 box, works even where aspect-ratio is unsupported */
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
