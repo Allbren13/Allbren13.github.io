@@ -4,11 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Allen Louie Abrenio — Full-Stack Developer</title>
-<meta name="description" content="Allen Louie Abrenio — BSIT student and aspiring full-stack developer. Builder of RentTrack, a GPS-tracked car rental system for NJ Car Rental.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='9' r='7' fill='%231E7A5C'/%3E%3Cpath d='M12 22 L6 11 L18 11 Z' fill='%231E7A5C'/%3E%3Ccircle cx='12' cy='9' r='2.5' fill='%23F7F8F5'/%3E%3C/svg%3E">
+<meta name="description" content="Allen Louie Abrenio — BSIT student and aspiring full-stack developer. Builder of RentTrack, a rental management system for NJ Car Rental.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' fill='%23F6F8FC'/%3E%3Cpath d='M3 8V3H8M16 3H21V8M21 16V21H16M8 21H3V16' stroke='%232954D6' stroke-width='2' fill='none'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
@@ -18,8 +18,8 @@
 
 <header class="site-header">
   <a href="#top" class="brand">
-    <span class="brand-pin" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9" r="2.4" fill="currentColor"/></svg>
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 8V3H8M16 3H21V8M21 16V21H16M8 21H3V16" stroke="currentColor" stroke-width="1.8"/></svg>
     </span>
     Allen Louie Abrenio
   </a>
@@ -48,26 +48,38 @@
         <a href="#contact" class="btn btn-ghost">Get in touch</a>
       </div>
     </div>
-    <div class="hero-map reveal" aria-hidden="true">
-      <svg viewBox="0 0 400 320" class="route-svg">
-        <circle class="geofence" cx="330" cy="60" r="46"/>
-        <path class="route-path" d="M30,270 C100,230 70,150 150,140 C230,130 210,60 330,60" />
-        <circle class="waypoint" cx="30" cy="270" r="5"/>
-        <circle class="waypoint" cx="150" cy="140" r="5"/>
-        <circle class="waypoint" cx="240" cy="95" r="5"/>
-        <g class="pin" transform="translate(330,60)">
-          <path d="M0,-28 C15,-28 26,-17 26,-3 C26,16 0,38 0,38 C0,38 -26,16 -26,-3 C-26,-17 -15,-28 0,-28Z"/>
-          <circle cx="0" cy="-4" r="9" fill="#F7F8F5"/>
-        </g>
-        <text x="316" y="110" class="pin-label mono">YOU ARE HERE</text>
-        <text x="316" y="126" class="pin-label mono muted-label">BULACAN, PH</text>
+
+    <div class="hero-visual reveal blueprint-frame" aria-hidden="true">
+      <p class="schema-caption mono">FIG. 00 — HOW I BUILD THINGS</p>
+      <svg viewBox="0 0 420 180" class="schema-svg">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 Z" class="schema-arrowhead"/>
+          </marker>
+        </defs>
+        <path class="draw-line schema-connector" d="M118,84 H160" marker-end="url(#arrow)"/>
+        <path class="draw-line schema-connector" d="M268,84 H310" marker-end="url(#arrow)"/>
+        <rect class="schema-box" x="8" y="48" width="110" height="72" rx="6"/>
+        <rect class="schema-box" x="160" y="48" width="108" height="72" rx="6"/>
+        <rect class="schema-box" x="310" y="48" width="102" height="72" rx="6"/>
+        <text x="63" y="80" class="schema-label">UI</text>
+        <text x="63" y="100" class="schema-sublabel">HTML · CSS · JSX</text>
+        <text x="214" y="80" class="schema-label">API</text>
+        <text x="214" y="100" class="schema-sublabel">PHP</text>
+        <text x="361" y="80" class="schema-label">DATABASE</text>
+        <text x="361" y="100" class="schema-sublabel">FIREBASE</text>
       </svg>
+      <div class="title-block mono">
+        <span>DRAWN BY — A. ABRENIO</span>
+        <span>STATUS — OPEN TO INTERNSHIPS</span>
+        <span>REV — 2026</span>
+      </div>
     </div>
   </section>
 
   <!-- ABOUT -->
   <section class="section" id="about">
-    <p class="eyebrow mono reveal">// 14.8°N 120.9°E — BULACAN, PH</p>
+    <p class="eyebrow mono reveal">FIG. 01 — ABOUT</p>
     <div class="about-grid">
       <h2 class="reveal">Still a student. Already shipping production systems.</h2>
       <div class="about-copy reveal">
@@ -85,36 +97,47 @@
 
   <!-- WORK -->
   <section class="section" id="work">
-    <p class="eyebrow mono reveal">// FLAGSHIP PROJECT</p>
+    <p class="eyebrow mono reveal">FIG. 02 — FLAGSHIP BUILD</p>
     <h2 class="reveal">RentTrack</h2>
 
-    <article class="project-card reveal">
+    <article class="project-card blueprint-frame reveal">
       <div class="project-main">
-        <p class="project-kicker mono"><span class="live-dot live-dot-sm" aria-hidden="true"></span>LIVE · NJ Car Rental Rental System</p>
+        <p class="project-subtitle">NJ Car Rental — Rental Management System</p>
+        <div class="spec-row mono">
+          <span><em>STATUS</em><span class="live-dot live-dot-sm" aria-hidden="true"></span>LIVE</span>
+          <span><em>ROLE</em>Solo Full-Stack Dev</span>
+          <span><em>TYPE</em>Capstone, 4th Year</span>
+        </div>
         <p class="project-desc">A rental management platform built for <strong>NJ Car Rental</strong>, a car rental business in Muzon, Bulacan. RentTrack replaces manual, social-media-based booking with a proper online system, and gives admins real-time visibility into rented vehicles through GPS hardware integration and a geofencing feature.</p>
-        <p class="project-role">Solo full-stack developer — capstone project, built independently as a 4th year college student.</p>
         <div class="chip-row">
           <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">PHP</span><span class="chip">JSX / React</span><span class="chip">Firebase</span><span class="chip">Figma</span><span class="chip">Git</span>
         </div>
         <a href="https://njcarrental.web.app" target="_blank" rel="noopener" class="btn btn-primary">Visit RentTrack ↗</a>
       </div>
       <div class="project-visual" aria-hidden="true">
-        <svg viewBox="0 0 200 200">
-          <circle class="geofence geofence-lg" cx="100" cy="100" r="70"/>
-          <circle class="geofence geofence-lg" cx="100" cy="100" r="45"/>
-          <circle cx="100" cy="100" r="6" fill="var(--accent)"/>
+        <svg viewBox="0 0 140 200" class="stack-svg">
+          <rect class="schema-box" x="10" y="12" width="120" height="48" rx="6"/>
+          <rect class="schema-box" x="10" y="76" width="120" height="48" rx="6"/>
+          <rect class="schema-box" x="10" y="140" width="120" height="48" rx="6"/>
+          <path class="draw-line schema-connector-v" d="M70,60 V76"/>
+          <path class="draw-line schema-connector-v" d="M70,124 V140"/>
+          <text x="70" y="40" class="schema-label">UI</text>
+          <text x="70" y="104" class="schema-label">API</text>
+          <text x="70" y="168" class="schema-label">DB</text>
         </svg>
       </div>
     </article>
 
-    <p class="eyebrow mono reveal more-work-label">// MORE ON THE WAY</p>
+    <p class="eyebrow mono reveal more-work-label">NOTE — MORE ON THE WAY</p>
     <div class="placeholder-grid">
       <article class="project-card-mini reveal">
+        <span class="stamp mono">PRELIMINARY</span>
         <p class="mono mini-tag">IN PROGRESS</p>
         <h3>Next build</h3>
         <p>Another project is in the works — check back soon, or ask me about what I'm currently building.</p>
       </article>
       <article class="project-card-mini reveal">
+        <span class="stamp mono">DRAFT</span>
         <p class="mono mini-tag">COMING SOON</p>
         <h3>Future project</h3>
         <p>This slot is reserved for what I ship next. I add to this list as I finish things.</p>
@@ -124,7 +147,7 @@
 
   <!-- SKILLS -->
   <section class="section" id="skills">
-    <p class="eyebrow mono reveal">// STACK</p>
+    <p class="eyebrow mono reveal">FIG. 03 — STACK</p>
     <h2 class="reveal">Tools I build with</h2>
     <div class="skills-grid reveal">
       <div class="skill-group">
@@ -154,7 +177,7 @@
 
   <!-- CONTACT -->
   <section class="section contact-section" id="contact">
-    <p class="eyebrow mono reveal">// REACH ME</p>
+    <p class="eyebrow mono reveal">FIG. 04 — CONTACT</p>
     <h2 class="reveal">Let's build something.</h2>
     <p class="contact-sub reveal">I'm currently looking for an internship where I can learn fast and contribute from day one. If that's you, let's talk.</p>
     <a href="mailto:allenabrenio4@gmail.com" class="btn btn-primary btn-lg reveal">allenabrenio4@gmail.com</a>

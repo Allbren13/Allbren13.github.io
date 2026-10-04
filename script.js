@@ -13,6 +13,18 @@ updateProgress();
 const revealEls = document.querySelectorAll('.reveal');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+function drawSchematic(root){
+  root.querySelectorAll('.draw-line').forEach(path => {
+    const len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    requestAnimationFrame(() => {
+      path.style.transition = 'stroke-dashoffset 1.1s ease';
+      path.style.strokeDashoffset = '0';
+    });
+  });
+}
+
 if (reduceMotion || !('IntersectionObserver' in window)) {
   revealEls.forEach(el => el.classList.add('is-visible'));
 } else {
@@ -20,6 +32,7 @@ if (reduceMotion || !('IntersectionObserver' in window)) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
+        drawSchematic(entry.target);
         observer.unobserve(entry.target);
       }
     });
