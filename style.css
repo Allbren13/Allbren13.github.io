@@ -159,13 +159,23 @@ section, main, header, footer { max-width: 100%; }
 /* ---------- Schematic diagram ---------- */
 .hero-visual{ padding: 24px 24px 0; }
 .schema-caption{ font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; margin-bottom: 10px; }
-.schema-svg{ width:100%; height:auto; display:block; }
 .schema-box{ fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.4; }
-.schema-connector{ fill:none; stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 5 6; }
 .schema-connector-v{ fill:none; stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 5 6; }
-.schema-arrowhead{ fill: var(--accent); }
 .schema-label{ font-family: var(--font-mono); font-size: 13px; fill: var(--ink); text-anchor: middle; font-weight: 500; }
-.schema-sublabel{ font-family: var(--font-mono); font-size: 9px; fill: var(--muted); text-anchor: middle; }
+
+.profile-photo{
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: var(--accent-soft);
+}
+.profile-photo img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
 
 .title-block{
   display:flex; flex-direction:column; gap:6px;
