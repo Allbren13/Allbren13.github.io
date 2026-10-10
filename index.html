@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=4">
 <noscript><style>.reveal{opacity:1!important;transform:none!important;}</style></noscript>
 </head>
 <body>
@@ -85,9 +85,8 @@
     <p class="eyebrow mono reveal">FIG. 02 — SELECTED WORK</p>
     <h2 class="reveal">Two systems, built end to end.</h2>
 
-    <div class="work-carousel-wrap">
-    <div class="work-carousel" id="workCarousel">
-    <article class="project-card blueprint-frame reveal">
+    <div class="work-stage reveal" id="workStage">
+    <article class="project-card blueprint-frame work-slide is-active" data-index="0">
       <div class="project-main">
         <h3>RentTrack</h3>
         <p class="project-subtitle">NJ Car Rental — Rental Management System</p>
@@ -116,7 +115,7 @@
       </div>
     </article>
 
-    <article class="project-card blueprint-frame reveal">
+    <article class="project-card blueprint-frame work-slide" data-index="1">
       <div class="project-main">
         <h3>CoffeeQueue</h3>
         <p class="project-subtitle">Self-Service Kiosk, POS &amp; Inventory Management</p>
@@ -155,7 +154,6 @@
         <span class="dot" data-index="1" role="button" tabindex="0" aria-label="Show CoffeeQueue"></span>
       </div>
       <button class="carousel-btn" id="carouselNext" aria-label="Next project">›</button>
-    </div>
     </div>
 
     <p class="eyebrow mono reveal more-work-label">NOTE — MORE ON THE WAY</p>
@@ -228,6 +226,6 @@
   <p>© <span id="year"></span> Allen Louie Abrenio. Designed &amp; built from scratch.</p>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>

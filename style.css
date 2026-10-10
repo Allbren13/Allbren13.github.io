@@ -225,23 +225,23 @@ section, main, header, footer { max-width: 100%; }
 /* ---------- Work ---------- */
 .section#work h2{ font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 36px; }
 
-.work-carousel-wrap{ position: relative; }
-.work-carousel{
-  display:flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 6px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--line) transparent;
+.work-stage{ display:grid; align-items: start; }
+.work-slide{
+  grid-column: 1; grid-row: 1;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .45s ease, transform .45s ease;
+  pointer-events: none;
+  z-index: 1;
 }
-.work-carousel::-webkit-scrollbar{ height: 6px; }
-.work-carousel::-webkit-scrollbar-thumb{ background: var(--line); border-radius: 4px; }
+.work-slide.is-active{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  z-index: 2;
+}
 
 .project-card{
-  flex: 0 0 auto;
-  width: min(640px, 80vw);
-  scroll-snap-align: start;
   padding: 44px;
   display:grid; grid-template-columns: 1.4fr 0.8fr;
   gap: 36px;
@@ -353,6 +353,7 @@ section, main, header, footer { max-width: 100%; }
 @media (prefers-reduced-motion: reduce){
   html{ scroll-behavior: auto; }
   .reveal{ opacity:1; transform:none; transition:none; }
+  .work-slide{ transition:none; }
   .live-dot::after{ animation:none; }
   .btn:hover{ transform:none; }
 }

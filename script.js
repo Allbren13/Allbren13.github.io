@@ -54,43 +54,39 @@ siteNav.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Work carousel
-const carousel = document.getElementById('workCarousel');
-if (carousel) {
-  const cards = [...carousel.querySelectorAll('.project-card')];
+// Work stage: single-card crossfade
+const stage = document.getElementById('workStage');
+if (stage) {
+  const slides = [...stage.querySelectorAll('.work-slide')];
   const prevBtn = document.getElementById('carouselPrev');
   const nextBtn = document.getElementById('carouselNext');
   const dots = [...document.getElementById('carouselDots').querySelectorAll('.dot')];
+  let current = slides.findIndex(s => s.classList.contains('is-active'));
+  if (current === -1) current = 0;
 
-  function cardOffset(i){ return cards[i].offsetLeft - carousel.offsetLeft; }
-
-  function currentIndex(){
-    let idx = 0, minDist = Infinity;
-    cards.forEach((c, i) => {
-      const dist = Math.abs(cardOffset(i) - carousel.scrollLeft);
-      if (dist < minDist) { minDist = dist; idx = i; }
-    });
-    return idx;
+  function updateControls(){
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
   }
 
   function goTo(i){
-    carousel.scrollTo({ left: cardOffset(i), behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (i === current || i < 0 || i >= slides.length) return;
+    slides[current].classList.remove('is-active');
+    slides[current].setAttribute('aria-hidden', 'true');
+    slides[i].classList.add('is-active');
+    slides[i].removeAttribute('aria-hidden');
+    current = i;
+    updateControls();
   }
 
-  function updateControls(){
-    const idx = currentIndex();
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-    prevBtn.disabled = idx === 0;
-    nextBtn.disabled = idx === cards.length - 1;
-  }
-
-  prevBtn.addEventListener('click', () => goTo(Math.max(0, currentIndex() - 1)));
-  nextBtn.addEventListener('click', () => goTo(Math.min(cards.length - 1, currentIndex() + 1)));
+  prevBtn.addEventListener('click', () => goTo(current - 1));
+  nextBtn.addEventListener('click', () => goTo(current + 1));
   dots.forEach((d, i) => {
     d.addEventListener('click', () => goTo(i));
     d.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(i); } });
   });
-  carousel.addEventListener('scroll', () => requestAnimationFrame(updateControls), { passive: true });
+  updateControls();
 }
 
 // Footer year
