@@ -86,6 +86,42 @@ if (stage) {
     d.addEventListener('click', () => goTo(i));
     d.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(i); } });
   });
+
+  // Drag / swipe left or right to change slides
+  const SWIPE_THRESHOLD = 60;
+  let startX = null, dx = 0;
+  stage.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    startX = e.clientX;
+    dx = 0;
+  });
+  stage.addEventListener('pointermove', (e) => {
+    if (startX === null) return;
+    dx = e.clientX - startX;
+    if (!stage.classList.contains('is-dragging') && Math.abs(dx) > 5) {
+      stage.classList.add('is-dragging');
+      stage.setPointerCapture(e.pointerId);
+    }
+    if (stage.classList.contains('is-dragging')) {
+      slides[current].style.transform = `translateX(${dx}px)`;
+    }
+  });
+  function endDrag(){
+    if (startX === null) return;
+    startX = null;
+    slides[current].style.transform = '';
+    stage.classList.remove('is-dragging');
+    if (dx < -SWIPE_THRESHOLD) goTo(current + 1);
+    else if (dx > SWIPE_THRESHOLD) goTo(current - 1);
+  }
+  stage.addEventListener('pointerup', endDrag);
+  stage.addEventListener('pointercancel', endDrag);
+  // Don't open a link when the pointer was released at the end of a drag
+  stage.addEventListener('click', (e) => {
+    if (Math.abs(dx) > 5) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+  stage.addEventListener('dragstart', (e) => e.preventDefault());
+
   updateControls();
 }
 

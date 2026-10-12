@@ -225,7 +225,9 @@ section, main, header, footer { max-width: 100%; }
 /* ---------- Work ---------- */
 .section#work h2{ font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 36px; }
 
-.work-stage{ display:grid; align-items: start; }
+.work-stage{ display:grid; align-items: start; touch-action: pan-y; user-select: none; cursor: grab; }
+.work-stage.is-dragging{ cursor: grabbing; }
+.work-stage.is-dragging .work-slide{ transition: none; }
 .work-slide{
   grid-column: 1; grid-row: 1;
   opacity: 0;
