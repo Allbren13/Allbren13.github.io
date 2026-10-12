@@ -54,7 +54,7 @@ siteNav.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Work stage: single-card crossfade
+// Work stage: center card with smaller neighbors on each side (loops)
 const stage = document.getElementById('workStage');
 if (stage) {
   const slides = [...stage.querySelectorAll('.work-slide')];
@@ -64,20 +64,21 @@ if (stage) {
   let current = slides.findIndex(s => s.classList.contains('is-active'));
   if (current === -1) current = 0;
 
-  function updateControls(){
+  function render(){
+    const n = slides.length;
+    slides.forEach((s, i) => {
+      const isActive = i === current;
+      s.classList.toggle('is-active', isActive);
+      s.classList.toggle('is-prev', i === (current - 1 + n) % n);
+      s.classList.toggle('is-next', i === (current + 1) % n);
+      s.inert = !isActive;
+    });
     dots.forEach((d, i) => d.classList.toggle('active', i === current));
-    prevBtn.disabled = current === 0;
-    nextBtn.disabled = current === slides.length - 1;
   }
 
   function goTo(i){
-    if (i === current || i < 0 || i >= slides.length) return;
-    slides[current].classList.remove('is-active');
-    slides[current].setAttribute('aria-hidden', 'true');
-    slides[i].classList.add('is-active');
-    slides[i].removeAttribute('aria-hidden');
-    current = i;
-    updateControls();
+    current = (i + slides.length) % slides.length;
+    render();
   }
 
   prevBtn.addEventListener('click', () => goTo(current - 1));
@@ -103,26 +104,30 @@ if (stage) {
       stage.setPointerCapture(e.pointerId);
     }
     if (stage.classList.contains('is-dragging')) {
-      slides[current].style.transform = `translateX(${dx}px)`;
+      stage.style.setProperty('--drag', `${dx}px`);
     }
   });
   function endDrag(){
     if (startX === null) return;
     startX = null;
-    slides[current].style.transform = '';
+    stage.style.setProperty('--drag', '0px');
     stage.classList.remove('is-dragging');
     if (dx < -SWIPE_THRESHOLD) goTo(current + 1);
     else if (dx > SWIPE_THRESHOLD) goTo(current - 1);
   }
   stage.addEventListener('pointerup', endDrag);
   stage.addEventListener('pointercancel', endDrag);
-  // Don't open a link when the pointer was released at the end of a drag
+  // Don't open a link when the pointer was released at the end of a drag;
+  // otherwise a click on a side card brings it to the center
   stage.addEventListener('click', (e) => {
-    if (Math.abs(dx) > 5) { e.preventDefault(); e.stopPropagation(); }
+    if (Math.abs(dx) > 5) { e.preventDefault(); e.stopPropagation(); return; }
+    const rect = slides[current].getBoundingClientRect();
+    if (e.clientX < rect.left) goTo(current - 1);
+    else if (e.clientX > rect.right) goTo(current + 1);
   }, true);
   stage.addEventListener('dragstart', (e) => e.preventDefault());
 
-  updateControls();
+  render();
 }
 
 // Footer year

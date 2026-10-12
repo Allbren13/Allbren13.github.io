@@ -28,6 +28,7 @@ body{
   font-family: var(--font-body);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip; /* 100vw work stage includes the scrollbar width */
 }
 h1,h2,h3{ font-family: var(--font-display); font-weight: 700; margin: 0; letter-spacing: -0.01em; }
 p{ margin:0; }
@@ -225,21 +226,30 @@ section, main, header, footer { max-width: 100%; }
 /* ---------- Work ---------- */
 .section#work h2{ font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 36px; }
 
-.work-stage{ display:grid; align-items: start; touch-action: pan-y; user-select: none; cursor: grab; }
+/* Full-bleed stage so the side cards can sit outside the section column */
+.work-stage{
+  --drag: 0px;
+  display:grid; align-items: center; justify-items: center;
+  width: 100vw; margin-left: calc(50% - 50vw);
+  overflow: hidden; padding: 6px 0;
+  touch-action: pan-y; user-select: none; cursor: grab;
+}
 .work-stage.is-dragging{ cursor: grabbing; }
 .work-stage.is-dragging .work-slide{ transition: none; }
 .work-slide{
   grid-column: 1; grid-row: 1;
+  width: min(580px, 80vw);
+  grid-template-columns: 1fr;
   opacity: 0;
-  transform: translateY(28px);
+  transform: translateX(var(--drag)) scale(.5);
   transition: opacity .45s ease, transform .45s ease;
-  pointer-events: none;
   z-index: 1;
 }
+.work-slide.is-prev{ opacity: .55; transform: translateX(calc(-90% + var(--drag))) scale(.7); }
+.work-slide.is-next{ opacity: .55; transform: translateX(calc(90% + var(--drag))) scale(.7); }
 .work-slide.is-active{
   opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  transform: translateX(var(--drag));
   z-index: 2;
 }
 
@@ -271,7 +281,7 @@ section, main, header, footer { max-width: 100%; }
 .project-visual{ display:flex; align-items:center; justify-content:center; }
 .stack-svg{ width: 120px; height:auto; }
 
-.carousel-controls{ display:flex; align-items:center; gap:16px; margin-top: 20px; }
+.carousel-controls{ display:flex; align-items:center; justify-content:center; gap:16px; margin-top: 20px; }
 .carousel-btn{
   width:40px; height:40px; border-radius:50%;
   border: 1px solid var(--line); background: var(--surface);
